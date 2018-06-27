@@ -1,0 +1,213 @@
+﻿<Window x:Class="MUSHAround.RoomPropertiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MUSHAround"
+        mc:Ignorable="d"
+        Title="Room Properties" Height="410" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Stretch" Grid.Row="0">
+            <TabItem Header="General">
+                <Grid Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Name:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="Name of the room."/>
+                                </ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <TextBox Grid.Column="1" Grid.ColumnSpan="2" Height="20" VerticalAlignment="Top" HorizontalAlignment="stretch" Text="{Binding Path=Room.RoomName}" />
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" Margin="0,0,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="Description:" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="The room's description.  To be displayed when characters 'look' in the room."/>
+                                </ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <TextBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Room.Description}" Grid.ColumnSpan="2"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,0,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="Exits:" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="List of exits leaving this room."/>
+                                </ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <ListBox Grid.Column="1" Height="70" HorizontalAlignment="stretch" VerticalAlignment="Top" ItemsSource="{Binding Path=Room.Exits}"/>
+                        <StackPanel Grid.Column="2" Height="70" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Button Content="Add" Width="70" Margin="0,0,0,5"></Button>
+                            <Button Content="Remove" Width="70"></Button>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Parent Room:">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="Select a Parent room to assign to this room or click Add to create a new Parent room."/>
+                                </ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <ComboBox Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        <Button Grid.Column="2" Width="70" Content="Add" HorizontalAlignment="right" VerticalAlignment="Top" Margin="0,0,5,0"/>
+                    </Grid>
+                    
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="Zone Master:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="Select a Zone master to ass to this room or click Add to create a new Zone master."></TextBlock>
+                                </ToolTip>
+                            </Label.ToolTip>
+                        </Label>
+                        <ComboBox Grid.Column="1" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        <Button Grid.Column="2" Width="70" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,0,5,0" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Format">
+                <Grid Margin="0,5,5,5">
+                   <Grid.RowDefinitions>
+                       <RowDefinition Height="75"/>
+                       <RowDefinition Height="75"/>
+                       <RowDefinition Height="75"/>
+                       <RowDefinition Height="75"/>
+                   </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="DescFormat:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Room.Descformat}" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="ConFormat:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Room.Conformat}" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="ExitFormat:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Room.Exitformat}" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" Content="NameFormat:" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <TextBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding Path=Room.Nameformat}" Grid.ColumnSpan="2"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid Margin="0,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Flags:" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <ListBox Grid.Column="1" Height="70" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemsSource="{Binding Path=Room.Flags}"/>
+                        <StackPanel Grid.Column="2" Height="70" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Button Content="Add" Width="70" Margin="0,0,0,5"></Button>
+                            <Button Content="Remove" Width="70"></Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Attributes:" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <DataGrid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="70" ItemsSource="{Binding Path=Room.Atributes}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Attribute" Width="75" Binding="{Binding Path=Key}"/>
+                                <DataGridTextColumn Header="Value" Width="225" Binding="{Binding Path=Value}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Column="2" Height="70" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Button Content="Add" Width="70" Margin="0,0,0,5"></Button>
+                            <Button Content="Remove" Width="70"></Button>
+                        </StackPanel>
+                    </Grid>                    
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button HorizontalAlignment="Right" Width="75" Height="20" Content="Save" Margin="0,0,5,0"/>
+            <Button HorizontalAlignment="Right" Width="75" Height="20" Content="Cancel"/>
+        </StackPanel>
+    </Grid>
+</Window>

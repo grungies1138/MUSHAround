@@ -1,0 +1,62 @@
+﻿<Window x:Class="MUSHAround.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MUSHAround"
+        xmlns:room="clr-namespace:MUSHAround.Models"
+        mc:Ignorable="d"
+        Title="MUSHAround" Height="350" Width="525" Background="White" MouseWheel="RoomCanvas_OnMouseWheel">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="roomRect">
+                <StackPanel>
+                    <StackPanel.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="New Exit" Click="MenuItem_OnClick" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"></MenuItem>
+                        </ContextMenu>
+                    </StackPanel.ContextMenu>
+                    <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10,10,10,10" Background="Beige" Width="120" Height="60" x:Name="border">
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=RoomName}" Margin="5,0,0,0"
+                                       d:DataContext="{d:DesignInstance room:Room}"></TextBlock>
+                            <TextBlock Text="{Binding Path=ParentRoom.Name}" Margin="5,0,0,0"></TextBlock>
+                            <TextBlock Text="{Binding Path=ZoneMaster.Name}" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ControlTemplate>
+            <ControlTemplate x:Key="exitArrow">
+                <Line Stroke="Black" StrokeThickness="2" x:Name="exitLine"></Line>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.RenderTransform>
+        <ScaleTransform x:Name="st">
+        </ScaleTransform>
+    </Window.RenderTransform>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New" Margin="0,0,5,0"/>
+                        <Image Source="Assets/Images/AddScreen_16x_32.bmp"/>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+    <Canvas Name="RoomCanvas" DockPanel.Dock="Bottom">
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="New Room" Click=" NewRoom_OnClick">
+                    </MenuItem>
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        <Canvas.RenderTransform><ScaleTransform x:Name="canvasST"></ScaleTransform></Canvas.RenderTransform>
+    </Canvas>
+    </DockPanel>
+</Window>
