@@ -12,6 +12,7 @@ namespace MUSHAround.Models
 
         public ExitAdorner(UIElement adornedElement) : base(adornedElement)
         {
+            //Todo
             renderBrush = new SolidColorBrush(Colors.White);
             Exit = new Exit();
             Room owner = adornedElement as Room;
